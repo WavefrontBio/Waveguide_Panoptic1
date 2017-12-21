@@ -1,0 +1,95 @@
+﻿<Window x:Class="Waveguide.ReportDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Create Report File" Height="300" Width="1000"
+        Icon="Images/WG_icon2.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="80"/>
+        </Grid.ColumnDefinitions>
+        
+        <Label Grid.Row="0" Grid.Column="0" Content="FileName:"
+               HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20"/>
+        
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Filename}"
+                 HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20"/>
+
+        <Label Grid.Row="1" Grid.Column="0" Content="Directory:"
+               HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20"/>
+
+        <TextBox Grid.Row="1" Grid.Column="1"  Text="{Binding Path=Directory}"
+                 HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" IsReadOnly="True"/>
+        
+        <Button Grid.Row="1" Grid.Column="2" Content="..." Width="30" Height="30" FontSize="20" FontWeight="Bold" Margin="5"
+                HorizontalAlignment="Left" VerticalAlignment="Center"
+                x:Name="BrowseForDirectoryPB" Click="BrowseForDirectoryPB_Click"/>
+
+        
+        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <GroupBox Grid.Column="0" Header="File Type" FontSize="16" x:Name="FileTypeGroup">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <RadioButton Grid.Row="0" Content="WaveGuide" Margin="25,0,0,0" x:Name="WaveGuideRB"
+                             HorizontalAlignment="Left" VerticalAlignment="Center" Checked="WaveGuideRB_Checked"/>
+
+                    <RadioButton Grid.Row="1" Content="Excel" Margin="25,0,0,0" x:Name="ExcelRB"
+                             HorizontalAlignment="Left" VerticalAlignment="Center" Checked="ExcelRB_Checked"/>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Grid.Column="1" Header="Select Analyses"  FontSize="16">
+
+                <ListBox Name="listBoxZone" ItemsSource="{Binding Path=AnalysisList}"
+                                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Azure">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Name="SelectedCkBx" Content="{Binding Path=Description}"
+                                 Checked="SelectedCkBx_Checked" IsChecked="{Binding Path=Selected}"  
+                                    Margin="0,5,0,0"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+            </GroupBox>
+
+
+        </Grid>
+        
+        
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="230"/>
+            </Grid.ColumnDefinitions>
+        
+        <Button Grid.Column="0" Content="Cancel" x:Name="CancelPB"
+                Width="80" Height="30" FontSize="20" Margin="0,0,30,0"
+                HorizontalAlignment="Right" VerticalAlignment="Center"
+                Click="CancelPB_Click"/>
+
+        <Button Grid.Column="1" Content="Write Report File" x:Name="WriteReportFilePB"
+                Width="200" Height="30" FontSize="20" Margin="10"
+                HorizontalAlignment="Right" VerticalAlignment="Center"
+                Click="WriteReportFilePB_Click"/>
+        </Grid>
+
+    </Grid>
+</Window>

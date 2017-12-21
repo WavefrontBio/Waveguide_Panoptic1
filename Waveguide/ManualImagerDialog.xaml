@@ -1,0 +1,35 @@
+﻿<Window x:Class="Waveguide.ManualImagerDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Waveguide" 
+        Title="ManualImagerDialog" Height="810" Width="640"
+        Icon="Images/WG_icon2.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <local:RunImager Grid.Row="0" x:Name="RunImagerControl"/>
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Content="{Binding Path=CameraTempString}"  Width="200" Height="40" x:Name="TempDisplay"
+               HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24" FontWeight="Bold"/>
+
+            <Button Grid.Column="1" Content="Save" Width="50" Height="30" x:Name="SavePB" Click="SavePB_Click"
+                HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
+
+            <Button Grid.Column="2" Content="OK" Width="50" Height="30" x:Name="OkPB" Click="OkPB_Click"
+                HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0"/>
+            
+        </Grid>
+
+        
+    </Grid>
+</Window>
